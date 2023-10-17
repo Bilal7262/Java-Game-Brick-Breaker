@@ -15,22 +15,22 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
     private boolean play = false;
     private int score = 0;
-    private int totalBricks = 100;
+    private int totalBricks = 600;
 
     private Timer timer;
-    private int delay = 8;
+    private int delay = 3;
 
     private int playerX = 310;
 
-    private int ballposX = 120;
-    private int ballposY = 350;
-    private int ballXdir = -6;
-    private int ballYdir = -7;
+    private int ballposX = 5;
+    private int ballposY = 5;
+    private int ballXdir = -4;
+    private int ballYdir = -4;
 
     private MapGenerator map;
 
     public Gameplay() {
-        map = new MapGenerator(4, 12);
+        map = new MapGenerator(10, 20);
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -65,7 +65,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
         // The ball
         g.setColor(Color.yellow);
-        g.fillOval(ballposX, ballposY, 20, 20);
+        g.fillOval(ballposX, ballposY, 5, 5);
 
         // When you win the game
         if (totalBricks <= 0) {
@@ -112,14 +112,14 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (!play) {
                 play = true;
-                ballposX = 120;
-                ballposY = 350;
-                ballXdir = -1;
-                ballYdir = -2;
+                ballposX = 5;
+                ballposY = 5;
+                ballXdir = -3;
+                ballYdir = -3;
                 playerX = 310;
                 score = 0;
-                totalBricks = 21;
-                map = new MapGenerator(3, 7);
+                totalBricks = 600;
+                map = new MapGenerator(10, 20);
                 repaint();
             }
         }
@@ -141,13 +141,13 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         timer.start();
         if (play) {
-			if (new Rectangle(ballposX, ballposY, 20, 20).intersects(new Rectangle(playerX, 550, 30, 8))) {
+			if (new Rectangle(ballposX, ballposY, 5, 5).intersects(new Rectangle(playerX, 550, 30, 8))) {
 				ballYdir = -ballYdir;
                 ballXdir = -2;
-			} else if (new Rectangle(ballposX, ballposY, 20, 20).intersects(new Rectangle(playerX + 70, 550, 30, 8))) {
+			} else if (new Rectangle(ballposX, ballposY, 5, 5).intersects(new Rectangle(playerX + 70, 550, 30, 8))) {
 				ballYdir = -ballYdir;
                 ballXdir = ballXdir + 1;
-			} else if (new Rectangle(ballposX, ballposY, 20, 20).intersects(new Rectangle(playerX + 30, 550, 40, 8))) {
+			} else if (new Rectangle(ballposX, ballposY, 5, 5).intersects(new Rectangle(playerX + 30, 550, 40, 8))) {
 				ballYdir = -ballYdir;
 			}
             // Check map collision with the ball
@@ -159,7 +159,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                         int brickWidth = map.brickWidth;
                         int brickHeight = map.brickHeight;
                         Rectangle rect = new Rectangle(brickX, brickY, brickWidth, brickHeight);
-                        Rectangle ballRect = new Rectangle(ballposX, ballposY, 20, 20);
+                        Rectangle ballRect = new Rectangle(ballposX, ballposY, 5, 5);
                         Rectangle brickRect = rect;
                         if (ballRect.intersects(brickRect)) {
                             map.setBrickValue(0, i, j);
