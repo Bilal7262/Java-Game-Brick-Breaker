@@ -29,6 +29,7 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
+                    <encoding>UTF-8</encoding> <!-- Set the character encoding to UTF-8 -->
                 </configuration>
             </plugin>
         </plugins>
