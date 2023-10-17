@@ -18,8 +18,8 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/java</sourceDirectory>
-        <testSourceDirectory>src/java</testSourceDirectory>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>src</testSourceDirectory>
 
         <plugins>
             <plugin>
